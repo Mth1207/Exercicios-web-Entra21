@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Principal</title>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,200;1,200;1,300&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div>
+                <h1 class="voltarInicio">
+                    Exercicio 1
+                </h1>
+            </div>
+
+            <div>
+                <img src="/imagens/Imagem.png" alt="Logo">
+            </div>
+        </nav>
+    </header>
+    <div class="content">
+        <label for="idade">Digite sua idade </label>
+        <input type="number" id="idade">
+        <button id="btnok" onclick="verificarIdade()">Verificar</button>
+        <button id="btnlp" onclick="limparConteudo()">Limpar</button>
+        <p id="resultado"></p>
+    </div>
+
+    <footer>
+        &copy 2023 Matheus. Todos os direitos reservados.
+    </footer>
+</body>
+
+<script>
+    function verificarIdade() {
+
+        const idade = document.getElementById("idade").value;
+        const resultado = document.getElementById("resultado");
+
+        if (idade == '') {
+            alert("Digite sua idade!");
+            return;
+        }
+
+        if (idade < 1) {
+            alert("Digite uma idade válida!");
+            return;
+        }
+
+        if (idade < 18) {
+            resultado.textContent= "Menor de idade!";
+            return;
+        } else {
+            resultado.textContent= "Maior de idade!";
+            return;
+        }
+
+    
+    
+        setTimeout(function() {
+            resultado.textContent= "";
+        }, 2000);
+    }
+
+    function limparConteudo() {
+        const resultado = document.getElementById("resultado");
+        resultado.textContent = "";
+
+        const inputIdade = document.getElementById("idade");
+        inputIdade.value = "";
+    }
+
+    const inputIdade = document.getElementById("idade");
+    inputIdade.addEventListener("keydown", function(event){
+        if (event.key === "Enter") {
+            verificarIdade();
+            event.preventDefault();
+        }
+    });
+</script>
+</html>
