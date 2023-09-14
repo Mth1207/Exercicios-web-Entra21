@@ -78,6 +78,8 @@ img {
 }
 
 button {
+    transition: transform 0.2s;
+    cursor: pointer;
     font-family: 'Barlow', sans serif;
     color: black;
     border-radius: 10px;
@@ -87,7 +89,10 @@ button {
     font-size: 20px;
     box-shadow: 1px 1px 10px 1px #2100fa88;
     border: 1px solid #826fff4d;
-    
+}
+
+button:active {
+    transform: scale(0.95);
 }
 
 #btnok {

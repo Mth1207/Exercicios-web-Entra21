@@ -27,7 +27,6 @@ footer {
     font-weight: bold;
 }
 
-
 #dmain {
     font-family: 'Barlow', sans-serif;
     box-shadow: 0 1px 10px 1px black;
@@ -72,49 +71,9 @@ img {
     font-family: 'Barlow', sans-serif;
     border-radius: 20px;
     min-height: 100px;
-    background-color:#826fff4d;
+    background-color: #826fff4d;
     box-shadow: 1px 1px 20px 3px #826fff;
     text-align: center;
-}
-
-button {
-    font-family: 'Barlow', sans serif;
-    color: black;
-    border-radius: 10px;
-    width: 100px;
-    height: 30px;
-    font-weight: bold;
-    font-size: 20px;
-    box-shadow: 1px 1px 10px 1px #2100fa88;
-    border: 1px solid #826fff4d;
-    
-}
-
-#btnok {
-    background-color: rgba(0, 255, 0, 0.589);
-    margin-left: 5%;
-}
-
-#btnlp {
-    background-color:rgba(33, 10, 240, 0.521);
-    margin-left: 3%;
-}
-
-#idade {
-    border-radius: 20px;
-    width: 15%;
-    height: 30px;
-    text-align: center;
-    border: 0;
-    margin-left: 5%;
-    font-size: 25px;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button{
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
 }
 
 .linkInicio {
@@ -149,4 +108,85 @@ input[type="number"]::-webkit-outer-spin-button{
     font-size: 4dvh;
     margin-top: 10px;
     justify-content: center;
+}
+
+button {
+    transition: transform 0.2s;
+    cursor: pointer;
+    font-weight: 500 bold;
+    font-size: 18px;
+    width: 150px;
+    height: auto;
+    border-radius: 20px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.botao {
+    margin-top: 10%;
+}
+
+#btnAdc {
+    font-weight: 600;
+    border: 3px solid #6550f1 ;
+    background-color: #6650f1c2;
+    height: 45px;
+    margin-left: 10%;
+    color: #170397;
+}
+
+#btnCalc {
+
+    font-weight: 600;
+    border: 3px solid #40a810;
+    background-color: #55e612d0;
+    height: 45px;
+    margin-right: 10%;
+    color: #2d6812;
+}
+
+#btnLimp {
+    font-weight: 600;
+    border: 3px solid #9b9b12;
+    background-color: #fafa09a9;
+    height: 45px;
+    margin-left: 10%;
+    color: #757515;
+}
+
+#nota {
+    border-radius: 10px;
+    border: 0;
+    background-color: rgba(218, 218, 218, 0.938);
+    font-size: 23px;
+    padding-left: 10px;
+}
+
+::placeholder {
+    padding-left: 5px;
+}
+
+hr {
+    border: 2px solid rgb(66, 64, 64);
+    background-color: rgb(66, 64, 64);
+}
+
+#freq {
+    border-radius: 10px;
+    border: 0;
+    background-color: rgba(218, 218, 218, 0.938);
+    font-size: 23px;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+#btnFreq {
+    font-weight: 600;
+    border: 3px solid #6550f1 ;
+    background-color: #6650f1c2;
+    height: 45px;
+    margin-left: 10%;
+    color: #170397;
 }

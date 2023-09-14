@@ -19,7 +19,7 @@
                 <h1>
                     Exercicio 2
                 </h1>
-                
+
             </div>
 
             <div>
@@ -28,15 +28,85 @@
         </nav>
     </header>
     <div class="content">
-        conteudo
+        <input type="text" id="nota" placeholder="Digite a nota">
+        <button id="btnAdc" onclick="adicionarNota()">Adicionar Nota</button>
+        
+        <input type="text" id="freq" placeholder="Digite a Frequência em %">
+        <button id="btnFreq" onclick="adicionarFrequencia()">Adicionar Frequência</button>
+        
+        <hr>
+        <div id="notasInseridas">Notas inseridas:</div>
+        <hr>
+    
+        <div class="botao">
+            <button id="btnCalc" onclick="calcularMedia()">Calcular Média</button>
+            <button id="btnLimp" onclick="limparNotas()">Limpar</button>
+        </div>
     </div>
 
     <footer>
         &copy 2023 Matheus. Todos os direitos reservados.
     </footer>
 </body>
-
 <script>
+    var notas = [];
+    var frequencia = -1;
+
+    const inputNota = document.getElementById("nota");
+        inputNota.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                adicionarNota();
+                event.preventDefault();
+            }
+        });
     
+    function adicionarNota() {
+        var notaStr = document.getElementById("nota").value;
+        var nota = parseFloat(notaStr);
+
+        if (!isNaN(nota) && nota >= 0 && nota <= 10) {
+            notas.push(nota);
+            document.getElementById("nota").value = "";
+            exibirNotasInseridas();
+        } else {
+            alert("Por favor, insira uma nota válida entre 0 e 10!");
+        }
+    }
+
+    function exibirNotasInseridas() {
+        var notasInseridasDiv = document.getElementById("notasInseridas");
+        notasInseridasDiv.innerHTML = "Notas inseridas: " + notas.join(", ");
+    }
+
+    function calcularMedia() {
+        if (notas.length > 0 && frequencia >= 0) {
+            var soma = 0;
+
+            for (var i = 0; i < notas.length; i++) {
+                soma += notas[i];
+            }
+
+            var media = soma / notas.length;
+        } else {
+            alert("Nenhuma nota ou frequência foi inserida.")
+        }
+        if (media >= 7 && frequencia >= 70){
+            alert("A média das notas é: " + media.toFixed(2) + " A Frequência foi: " + frequencia + " Aluno Aprovado!");
+            
+        } else {
+            alert("A média das notas é: " + media.toFixed(2) + " A Frequência foi: " + frequencia + " Aluno Reprovado!");
+        }
+    }
+
+    function limparNotas() {
+            notas = [];
+            exibirNotasInseridas();
+            document.getElementById("freq").value ="";
+        }
+
+    function adicionarFrequencia() {
+        var freqStr = document.getElementById("freq").value;
+        frequencia = parseFloat(freqStr);
+    }
 </script>
 </html>
