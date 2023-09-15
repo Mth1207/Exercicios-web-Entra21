@@ -135,7 +135,7 @@ button:active {
 }
 
 #resultado {
-    display: block;
+    text-align: left;
 
 }
 
