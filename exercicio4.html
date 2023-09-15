@@ -19,7 +19,7 @@
                 <h1>
                     Exercicio 4
                 </h1>
-                
+
             </div>
 
             <div>
@@ -28,15 +28,82 @@
         </nav>
     </header>
     <div class="content">
-        conteudo
+        <div id="entradaDados">
+            <label for="cargo">Informe Cargo</label>
+            <input id="cargo" type="text" placeholder="cargo..">
+            <label for="salario">Informe Salario</label>
+            <input id="salario" type="text" placeholder="salario R$..">
+        </div>
+        <div>
+            <button id="btnCheck" onclick="calcularAumento()">Verificar Aumento</button>
+            <button id="btnLimp" onclick="limpar()">Limpar</button>
+        </div>
+        <div>
+            <p id="resultado">RESULTADO</p>
+        </div>
     </div>
 
     <footer>
         &copy 2023 Matheus. Todos os direitos reservados.
     </footer>
 </body>
-
 <script>
-    
+    function calcularAumento() {
+        var salarioStr = document.getElementById("salario").value;
+        var salario = parseFloat(salarioStr);
+        var cargo = document.getElementById("cargo").value;
+        var resultado = document.getElementById("resultado");
+        let cargoVal = cargo.toLowerCase();
+
+        if(!isNaN(salario) && cargoVal != "" && salario >= 0){
+            if (cargoVal == "gerente") {
+                let aumentoGerente = salario * 0.05;
+                let nSalGerente = salario + aumentoGerente;
+                resultado.innerHTML = "Salário: R$ " + salario.toFixed(2) + ",\nrecebeu aumento de: R$ " + aumentoGerente.toFixed(2) + ",\nsalário com aumento ficou: R$" + nSalGerente.toFixed(2);
+                resultado.style.backgroundColor = "#6650f1c2";
+                resultado.style.borderRadius = "10px";
+                resultado.style.border = "1px solid #6550f1";
+                resultado.style.boxShadow = "1px 1px 20px 3px #826fff";
+                limpar();
+            } else if (cargoVal == "supervisor") {
+                let aumentoSup = salario * 0.08;
+                let nSalSup = salario + aumentoSup;
+                resultado.innerHTML = "Salário: R$ " + salario.toFixed(2) + ",\nrecebeu aumento de: R$ " + aumentoSup.toFixed(2) + ",\nsalário com aumento ficou: R$" + nSalSup.toFixed(2);
+                resultado.style.backgroundColor = "#6650f1c2";
+                resultado.style.borderRadius = "10px";
+                resultado.style.border = "1px solid #6550f1";
+                resultado.style.boxShadow = "1px 1px 20px 3px #826fff";
+                limpar();
+            } else if (cargoVal == "operador") {
+                let aumentoOp = salario * 0.09;
+                let nSalOp = salario + aumentoOp;
+                resultado.innerHTML = "Salário: R$ " + salario.toFixed(2) + ",\nrecebeu aumento de: R$ " + aumentoOp.toFixed(2) + ",\nsalário com aumento ficou: R$" + nSalOp.toFixed(2);
+                resultado.style.backgroundColor = "#6650f1c2";
+                resultado.style.borderRadius = "10px";
+                resultado.style.border = "1px solid #6550f1";
+                resultado.style.boxShadow = "1px 1px 20px 3px #826fff";
+                limpar();
+            } else {
+                let aumentoGeral = salario * 0.10;
+                let nSalGeral = salario + aumentoGeral;
+                resultado.innerHTML = "Salário: R$ " + salario.toFixed(2) + ",\nrecebeu aumento de: R$ " + aumentoGeral.toFixed(2) + ",\nsalário com aumento ficou: R$" + nSalGeral.toFixed(2);
+                resultado.style.backgroundColor = "#6650f1c2";
+                resultado.style.borderRadius = "10px";
+                resultado.style.border = "1px solid #6550f1";
+                resultado.style.boxShadow = "1px 1px 20px 3px #826fff";
+                limpar();
+            }
+        } else {
+            alert("Erro!!\nDigite um cargo e um salário válido!");
+            limpar();
+        }
+    }
+
+    function limpar() {
+        document.getElementById("salario").value = "";
+        document.getElementById("cargo").value = "";
+        document.getElementById("resultado").value = "";        
+    }
 </script>
+
 </html>
