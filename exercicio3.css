@@ -175,3 +175,8 @@ button:active {
 p {
     font-weight: 900;
 }
+
+button:hover {
+    transform: scale(1.05);
+    transition: background-color 0.3s, transform 0.3s;
+}

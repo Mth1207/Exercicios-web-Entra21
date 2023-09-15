@@ -190,3 +190,8 @@ hr {
     margin-left: 10%;
     color: #170397;
 }
+
+button:hover {
+    transform: scale(1.05);
+    transition: background-color 0.3s, transform 0.3s;
+}
