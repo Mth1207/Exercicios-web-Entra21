@@ -75,6 +75,7 @@ img {
     background-color:#826fff4d;
     box-shadow: 1px 1px 20px 3px #826fff;
     text-align: center;
+    min-width: 600px;
 }
 
 button {
