@@ -19,7 +19,7 @@
                 <h1>
                     Exercicio 3
                 </h1>
-                
+
             </div>
 
             <div>
@@ -28,15 +28,107 @@
         </nav>
     </header>
     <div class="content">
-        conteudo
+        <p>CALCULAR IMC</p>
+        <div class="entradaDados">
+            <label for="peso">Informe Peso: </label>
+            <input type="text" id="peso" placeholder="Kg">
+            <label for="altura">Informe Altura: </label>
+            <input type="text" id="altura" placeholder="mt">
+            <button id="btnCalc" onclick="calcularIMC()">Calcular IMC </button>
+            <button id="btnLimp" onclick="limpar()">Limpar</button>
+        </div>
+
+        <div>
+            <h4>Resultado:</h4>
+            <p id="resultado"></p>
+        </div>
+        <div class="tabela">
+            <table>
+                <thead>
+                    <th id="th1">RESULTADO</th>
+                    <th id="th2">SITUAÇÃO</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Abaixo de 17</td>
+                        <td>Muito abaixo do peso</td>
+                    </tr>
+                    <tr>
+                        <td>Entre 17 e 18,49</td>
+                        <td>Abaixo do peso</td>
+                    </tr>
+                    <tr>
+                        <td>Entre 18,50 e 24,99</td>
+                        <td>Peso normal</td>
+                    </tr>
+                    <tr>
+                        <td>Entre 25 e 29,99</td>
+                        <td>Acima do peso</td>
+                    </tr>
+                    <tr>
+                        <td>Entre 30 e 34,99</td>
+                        <td>Obesidade I</td>
+                    </tr>
+                    <tr>
+                        <td>Entre 35 e 39,99</td>
+                        <td>Obesidade II (severa)</td>
+                    </tr>
+                    <tr>
+                        <td>Acima de 40</td>
+                        <td>Obesidade III (mórbida)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <footer>
         &copy 2023 Matheus. Todos os direitos reservados.
     </footer>
 </body>
-
 <script>
-    
+    function calcularIMC() {
+        var pesoStr = document.getElementById("peso").value;
+        var peso = parseFloat(pesoStr);
+        var alturaStr = document.getElementById("altura").value;
+        var altura = parseFloat(alturaStr);
+
+        if (!isNaN(peso) && !isNaN(altura) && peso > 0 && altura > 0) {
+            var imc = peso / (altura * altura);
+            //alert(imc.toFixed(2));
+            var resultado = document.getElementById("resultado");
+
+            if (imc < 17) {
+                resultado.innerHTML = "Seu IMC foi de: " + imc.toFixed(2) + " e você está Muito abaixo do peso!";
+            } else if (imc >= 17 && imc <= 18.49) {
+                resultado.innerHTML = "Seu IMC foi de: " + imc.toFixed(2) + " e você está Abaixo do peso!";
+            } else if (imc >= 18.50 && imc <= 24.99) {
+                resultado.innerHTML = "Seu IMC foi de: " + imc.toFixed(2) + " e você está no seu Peso normal";
+            } else if (imc >= 25 && imc <= 29.99) {
+                resultado.style.backgroundColor = "#6650f1c2";
+                resultado.style.borderRadius = "10px";
+                resultado.style.border = "1px solid #6550f1";
+                resultado.style.boxShadow = "1px 1px 20px 3px #826fff";
+                resultado.innerHTML = "Seu IMC foi de: " + imc.toFixed(2) + " e você está Acima do peso";
+            } else if (imc >= 30 && imc <= 34.99) {
+                resultado.innerHTML = "Seu IMC foi de: " + imc.toFixed(2) + " e você está com Obesidade I";
+            } else if (imc >= 35 && imc <= 39.99) {
+                resultado.innerHTML = "Seu IMC foi de: " + imc.toFixed(2) + " e você está com Obesidade II (severa)";
+            } else {
+                resultado.style.backgroundColor = "#6550f1";
+                resultado.innerHTML = "Seu IMC foi de: " + imc.toFixed(2) + " e você está com Obesidade III (mórbida)";
+            }
+        } else {
+            alert("Digite um valor válido!");
+            limpar();
+        }
+    }
+
+    function limpar() {
+        document.getElementById("peso").value = "";
+        document.getElementById("altura").value = "";
+    }
+
 </script>
+
 </html>

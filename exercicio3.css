@@ -27,23 +27,6 @@ footer {
     font-weight: bold;
 }
 
-#dmain {
-    font-family: 'Barlow', sans-serif;
-    box-shadow: 0 1px 10px 1px black;
-    border-radius: 20px;
-    background-color: #826fff4d;
-    margin-left: 30%;
-    margin-right: 30%;
-    margin-top: 10%;
-    border: 1px solid #826fff9a;
-    height: 300px;
-    text-align: center;
-    font-size: 30px;
-    color: rgb(41, 41, 43);
-    margin-bottom: 10px;
-    padding-bottom: 20px;
-}
-
 a {
     display: block;
     text-decoration: none;
@@ -65,6 +48,7 @@ img {
     height: 100%;
     margin-left: 30%;
     margin-right: 28%;
+    margin-bottom: 40px;
     padding: 15px;
     font-size: 25px;
     font-weight: 800;
@@ -108,4 +92,86 @@ img {
     font-size: 4dvh;
     margin-top: 10px;
     justify-content: center;
+}
+
+input {
+    border: 0;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    width: 70px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 38%;
+    font-size: 23px;
+    text-align: center;
+}
+
+.tabela {
+    text-align: left;
+    margin-left: 15%;
+    margin-bottom: 5%;
+
+}
+
+td {
+    padding: 5px;
+    border: 1px dashed black;
+    border-radius: 10px;
+    background-color: #836FFF;
+}
+
+th {
+    text-align: center;
+    border-top: 1px dashed black;
+    border-radius: 10px;
+    background-color: #7240cebe;
+}
+
+#th1 {
+    border-right: 1px dashed black;
+    border-left: 1px dashed black;
+}
+
+#th2 {
+    border-right: 1px dashed black;
+    border-left: 1px dashed black;
+}
+
+button {
+    cursor: pointer;
+    transition: transform 0.2s;
+    font-family: "Barlow", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 2%;
+    width: auto;
+    border-radius: 10px;
+    height: auto;
+    padding: 5px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#btnCalc {
+    border: 3px solid #40a810;
+    background-color: #55e612d0;
+    color: #2d6812;
+}
+
+#btnLimp {
+    border: 3px solid #9b9b12;
+    background-color: #fafa09a9;
+    color: #757515;
+}
+
+::placeholder {
+    text-align: center;
+    font-size: 23px;
+}
+
+p {
+    font-weight: 900;
 }
