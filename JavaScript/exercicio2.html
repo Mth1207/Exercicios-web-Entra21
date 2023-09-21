@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="nome" type="text" placeholder="Digite nome..">
+    <input id="telefone" type="text" placeholder="Digite telefone..">
+    <input id="email" type="email" placeholder="Digite email..">
+
+    <button onclick="cadastrar()">Cadastrar</button>
+    <hr>
+
+    <table id="tabela" border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        var usuarios = [];
+
+        function cadastrar() {
+            var nome = document.getElementById("nome").value;
+            var telefone = document.getElementById("telefone").value;
+            var email = document.getElementById("email").value;
+
+            if (!validar(nome, telefone, email)) {
+                alert("Preencha todos os campos antes de cadastrar!");
+                return;
+            }
+
+            if (usuarioExiste(email)) {
+                alert("Email já existe na lista.");
+                return;
+            }
+
+            var usuario = { nome, telefone, email };
+            usuarios.push(usuario);
+
+            exibir();
+        }
+
+        function exibir() {
+            var tabela = document.getElementById("tabela");
+            var tbody = tabela.getElementsByTagName("tbody")[0];
+            tbody.innerHTML = "";
+
+            for (let i = 0; i < usuarios.length; i++) {
+                var usuario = usuarios[i];
+                var linha = tbody.insertRow(i);
+                var cellNome = linha.insertCell(0);
+                var cellTelefone = linha.insertCell(1);
+                var cellEmail = linha.insertCell(2);
+                var cellAcao = linha.insertCell(3);
+
+                cellNome.textContent = usuario.nome;
+                cellTelefone.textContent = usuario.telefone;
+                cellEmail.textContent = usuario.email;
+
+                var btnExcluir = document.createElement("button");
+                btnExcluir.textContent = "Excluir";
+                btnExcluir.onclick = function() {
+                    excluirUsuario(i);
+                };
+
+                var btnEditar = document.createElement("button");
+                btnEditar.textContent = "Editar";
+                btnEditar.onclick = function() {
+                    editarUsuario(i);
+                };
+
+                cellAcao.appendChild(btnExcluir);
+                cellAcao.appendChild(btnEditar);
+            }
+        }
+
+        function validar(nome, telefone, email) {
+            return nome.trim() !== "" && telefone.trim() !== "" && email.trim() !== "";
+        }
+
+        function usuarioExiste(email, indiceEditar) {
+            for (let i = 0; i < usuarios.length; i++) {
+                if (i !== indiceEditar && usuarios[i].email === email) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function excluirUsuario(indice) {
+            if (confirm("Tem certeza que deseja excluir este usuário?")) {
+                usuarios.splice(indice, 1);
+                exibir();
+            }
+        }
+
+        function editarUsuario(indice) {
+            var usuario = usuarios[indice];
+            
+            var inputNomeEditar = document.createElement("input");
+            inputNomeEditar.type = "text";
+            inputNomeEditar.value = usuario.nome;
+            var inputTelefoneEditar = document.createElement("input");
+            inputTelefoneEditar.type = "text";
+            inputTelefoneEditar.value = usuario.telefone;
+            var inputEmailEditar = document.createElement("input");
+            inputEmailEditar.type = "email";
+            inputEmailEditar.value = usuario.email;
+
+            var btnSalvar = document.createElement("button");
+            btnSalvar.textContent = "Salvar";
+            btnSalvar.onclick = function() {
+                salvarEdicao(indice, inputNomeEditar.value, inputTelefoneEditar.value, inputEmailEditar.value);
+            };
+
+            var tabela = document.getElementById("tabela");
+            var tbody = tabela.getElementsByTagName("tbody")[0];
+            tbody.deleteRow(indice);
+            var linha = tbody.insertRow(indice);
+
+            var cellNome = linha.insertCell(0);
+            var cellTelefone = linha.insertCell(1);
+            var cellEmail = linha.insertCell(2);
+            var cellAcao = linha.insertCell(3);
+
+            cellNome.appendChild(inputNomeEditar);
+            cellTelefone.appendChild(inputTelefoneEditar);
+            cellEmail.appendChild(inputEmailEditar);
+            cellAcao.appendChild(btnSalvar);
+        }
+
+        function salvarEdicao(indice, novoNome, novoTelefone, novoEmail) {
+            if (!validar(novoNome, novoTelefone, novoEmail)) {
+                alert("Preencha todos os campos antes de salvar a edição.");
+                return;
+            }
+
+            if (usuarioExiste(novoEmail, indice)) {
+                alert("Email já existe na lista.");
+                return;
+            }
+
+            var usuario = usuarios[indice];
+            usuario.nome = novoNome;
+            usuario.telefone = novoTelefone;
+            usuario.email = novoEmail;
+
+            exibir();
+        }
+    </script>
+</body>
+
+</html>

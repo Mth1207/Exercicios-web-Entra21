@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="inserirFrutas()">Inserir</button>
+    <input id="nFruta" type="text" placeholder="Digite a fruta para inserir..">
+    <hr>
+    <ul id="listaFrutas">
+
+    </ul>
+    <script>
+        var frutas = []
+
+        function inserirFrutas() {
+            var novaFruta = document.getElementById("nFruta").value;
+            if (novaFruta == "") {
+                alert("Digite um valor válido!");
+                novaFruta.focus();
+                return;
+            }
+            if (!frutaExiste(novaFruta)) {
+                frutas.push(novaFruta);
+                document.getElementById("nFruta").value = "";
+                atualizarLista();
+            } else {
+                alert("Fruta ja existe")
+            }
+        }
+
+        function atualizarLista() {
+            var lista = document.getElementById("listaFrutas");
+            lista.innerHTML = "";
+
+            for (var i = 0; i < frutas.length; i++) {
+                var itemLista = document.createElement('li');
+                itemLista.textContent = frutas[i];
+                lista.appendChild(itemLista);
+            }
+        }
+
+        function frutaExiste(fruta) {
+            for (let i = 0; i < frutas.length; i++) {
+                if (frutas[i] === fruta) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>
