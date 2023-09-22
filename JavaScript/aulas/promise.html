@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+        let numero = 10
+        let myPromise = new Promise((ok, errado)=>{
+            if(numero % 2 == 2) {
+                ok('Numero par')
+            } else {
+                errado('Nao é numero')
+            }
+        })
+
+        myPromise
+        .then((text) => console.log(text))
+        .catch((erro) => console.log(erro))
+
+    </script>
+</body>
+</html>
