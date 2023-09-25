@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="lista" placeholder="digite um número..">
+    <div>
+        <p id="resultado"></p>
+    </div>
+    <button onclick="mostrarCresente()">Mostrar</button>
+    <button onclick="adicionar()">Adicionar</button>
+
+    <script>
+        var lista = []
+
+        function adicionar() {
+            var entrada = document.getElementById("lista").value
+            lista.push(entrada)
+            console.log(lista)
+        }
+
+        function mostrarCrescente() {
+            lista.sort(function(a, b){
+                return a - b
+            }) 
+            console.log(lista)
+        }
+    </script>
+</body>
+</html>
