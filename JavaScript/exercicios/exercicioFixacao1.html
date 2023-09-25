@@ -10,23 +10,36 @@
     <div>
         <p id="resultado"></p>
     </div>
-    <button onclick="mostrarCresente()">Mostrar</button>
     <button onclick="adicionar()">Adicionar</button>
+    <button onclick="mostrarCrescente()">Mostrar</button>
 
     <script>
         var lista = []
 
         function adicionar() {
             var entrada = document.getElementById("lista").value
-            lista.push(entrada)
+            lista.push(parseInt(entrada))
             console.log(lista)
+        }
+
+        function mostrarResultado(resultado) {
+            var resultadoDiv = document.getElementById("resultado")
+            resultadoDiv.textContent = resultado
         }
 
         function mostrarCrescente() {
             lista.sort(function(a, b){
                 return a - b
             }) 
-            console.log(lista)
+            mostrarResultado(lista.join(', '))
+        }
+
+        function mostrarDecrescente() {
+            lista.sort(function(a, b){
+                return b - a
+                console.log(lista)
+            })
+            
         }
     </script>
 </body>
