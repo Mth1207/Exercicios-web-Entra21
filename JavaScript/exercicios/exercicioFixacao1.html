@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <input type="number" id="lista" placeholder="digite um número..">
     <div>
         <p id="resultado"></p>
     </div>
 
-    
+
     <button onclick="adicionar()">Adicionar</button>
     <button onclick="mostrar()">Mostrar</button>
+    <button onclick="consultar()">Consultar</button>
 
     <div>
         <input type="radio" id="selecao1" name="tipo" value="crescente">
@@ -42,12 +45,12 @@
         }
 
         function ordenarLista(tipo) {
-            if (tipo === "crescente"){
-                lista.sort(function(a, b) {
+            if (tipo === "crescente") {
+                lista.sort(function (a, b) {
                     return a - b
                 })
             } else if (tipo === "decrescente") {
-                lista.sort(function(a, b) {
+                lista.sort(function (a, b) {
                     return b - a
                 })
             }
@@ -77,7 +80,24 @@
             document.getElementById("lista").value = ""
         }
 
+        function consultar() {
+            var entrada = parseInt(document.getElementById("lista").value)
+            var posicoes = []
+            
+            for (let i = 0; i < lista.length;i++) {
+                if (lista[i] === entrada) {
+                    posicoes.push(i)
+                }
+            }
+
+            if (posicoes.length > 0) {
+                alert("O item" + entrada + " está na posição: " + posicoes)
+            } else {
+                alert("Item não encontrado na lista!")
+            }
+        }
 
     </script>
 </body>
+
 </html>
