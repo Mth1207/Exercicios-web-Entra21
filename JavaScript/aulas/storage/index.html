@@ -6,53 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <button onclick="gravarStorage()">Gravar no storage</button>
-    <hr>
-    <button onclick="lerStorage()">Ler do storage</button>
-    <hr>
-    <button onclick="deletarStorage()">Limpar Storage</button>
-
-    <p id="strg">
-
-    </p>
-
-    <script>
-        function gravarStorage() {
-           /* // inserindo um dado apenas*/
-            localStorage.setItem('nome', 'Matheus')
-            
-
-            //inserindo JSON com dados
-            let obj = {
-                nome: 'Matheus',
-                email: 'mt121207@gmail.com'
-            }
-            //convertendo para JSON
-            localStorage.setItem('dados', JSON.stringify(obj))
-        }
-
-        function lerStorage() {
-            /* //mostrando o dado inserido individualmente.*/
-            var strg = localStorage.getItem('nome')
-            document.getElementById('strg').innerHTML = strg 
-            
-            //mostrando dados JSON
-            var strg = localStorage.getItem('dados')
-            document.getElementById('strg').innerHTML = strg
-
-            //convertendo para objeto
-            let obj = JSON.parse(strg)
-            console.log(obj.nome)
-            console.log(obj.email)
-        }
-
-        function deletarStorage() {
-            /* deleta todas as chaves 
-            localStorage.clear() */
-
-            /* deleta a chave selecionada
-            localStorage.removeItem('nome') */
-        }
-    </script>
+    <a href="cadastro.html">Cadastro</a>
+    <a href="login.html">Login</a>
 </body>
 </html>
