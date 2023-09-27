@@ -1,11 +1,18 @@
 var lista = []
 
 function adicionar() {
-    var entrada = document.getElementById("lista").value
-    lista.push(parseInt(entrada))
-    console.log(lista)
-    limpar()
-    mostrar()
+    var entrada = document.getElementById("lista").value.trim()
+    if (entrada ===""){
+        alert("Você precisa digitar um número para adicionar!")
+    }
+    else if (isFinite(entrada)) {
+        lista.push(parseInt(entrada))
+        console.log(lista)
+        limpar()
+        mostrar()
+    } else {
+        alert("Digite um número válido para adicionar!")
+    }
 }
 
 function mostrarResultado(resultado) {
@@ -52,8 +59,8 @@ function limpar() {
 function consultar() {
     var entrada = parseInt(document.getElementById("lista").value)
     var posicoes = []
-    
-    for (let i = 0; i < lista.length;i++) {
+
+    for (let i = 0; i < lista.length; i++) {
         if (lista[i] === entrada) {
             posicoes.push(i)
         }
@@ -92,6 +99,6 @@ function substituir() {
     } else {
         alert("Item não encontrado na lista");
     }
-    
+
     mostrar()
 }
