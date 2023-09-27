@@ -27,6 +27,7 @@
                 nome: 'Matheus',
                 email: 'mt121207@gmail.com'
             }
+            //convertendo para JSON
             localStorage.setItem('dados', JSON.stringify(obj))
         }
 
@@ -39,6 +40,7 @@
             var strg = localStorage.getItem('dados')
             document.getElementById('strg').innerHTML = strg
 
+            //convertendo para objeto
             let obj = JSON.parse(strg)
             console.log(obj.nome)
             console.log(obj.email)
