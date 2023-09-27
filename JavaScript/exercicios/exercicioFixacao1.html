@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Verificar</title>
 </head>
 
 <body>
@@ -17,6 +17,8 @@
     <button onclick="adicionar()">Adicionar</button>
     <button onclick="mostrar()">Mostrar</button>
     <button onclick="consultar()">Consultar</button>
+    <button onclick="remover()">Remover</button>
+    <button onclick="substituir()">Substituir</button>
 
     <div>
         <input type="radio" id="selecao1" name="tipo" value="crescente">
@@ -97,6 +99,31 @@
             }
         }
 
+        function remover() {
+            var entrada = parseInt(document.getElementById("lista").value);
+            var index = lista.indexOf(entrada);
+
+            if (index !== -1) {
+                lista.splice(index, 1);
+                console.log(lista);
+            } else {
+                alert("Item não encontrado na lista");
+            }
+        }
+
+        function substituir() {
+            var entrada = parseInt(document.getElementById("lista").value);
+            var novoValor = parseInt(prompt("Informe o novo valor:"));
+
+            var index = lista.indexOf(entrada);
+
+            if (index !== -1) {
+                lista[index] = novoValor;
+                console.log(lista);
+            } else {
+                alert("Item não encontrado na lista");
+            }
+        }
     </script>
 </body>
 
