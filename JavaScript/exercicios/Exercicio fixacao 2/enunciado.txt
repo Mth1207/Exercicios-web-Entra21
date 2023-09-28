@@ -1,0 +1,10 @@
+Crie uma página:
+#- informar a descrição de um produto 
+#- seu valor unitário 
+#- unidades deseja comprar
+
+O usuário ainda poderá realizar as seguintes operações:
+a) listar todos os itens em uma tabela ou card;
+b) editar um item;
+c) remover um item;
+d) mostrar o total contábil dos itens inseridos.
