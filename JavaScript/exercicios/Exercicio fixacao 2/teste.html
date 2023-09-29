@@ -55,17 +55,20 @@
             var preco = document.getElementById("preco").value;
             var quantidade = document.getElementById("quantidade").value;
 
+            preco = preco.replace(",", ".");
+
             const objProduto = {
                 id: contador++,
                 nome: produto,
                 descricao: descricao,
-                preco: preco,
-                quantidade: quantidade
+                preco: parseFloat(preco),
+                quantidade: parseInt(quantidade)
             };
 
             produtos.push(objProduto);
             console.log(produtos);
             limpar();
+            mostrar();
         }
 
         function limpar() {
@@ -89,14 +92,27 @@
                     var cell5 = row.insertCell(4);
                     var cell6 = row.insertCell(5);
 
+                    
+
                     cell1.innerHTML = prod.id;
                     cell2.innerHTML = prod.nome;
                     cell3.innerHTML = prod.descricao;
-                    cell4.innerHTML = prod.preco;
+                    cell4.innerHTML = prod.preco.toFixed(2).replace(".", ",");
                     cell5.innerHTML = prod.quantidade;
                     cell6.innerHTML = `<button class="btn btn-danger" onclick="excluir(${prod.id})">Excluir</button> <button class="btn btn-info" onclick="editar(${prod.id})">Editar</button>`
-
+                
                 }
+
+                var total = 0;
+                for (let i = 0; i < produtos.length;i++) {
+                    total += parseFloat(produtos[i].preco) * parseInt(produtos[i].quantidade);
+                }
+
+                var linhaTotal = listaProdutos.insertRow();
+                var cellTotal = linhaTotal.insertCell(0);
+                cellTotal.colSpan = 6;
+                cellTotal.innerHTML = `<strong>Total:</strong> R$ ${total.toFixed(2)}`;
+
             } else {
                 alert("A lista está vazia!")
             }
@@ -118,21 +134,53 @@
             if (index !== -1) {
                 const produtoEditado = produtos[index]
 
-                var novoNome = prompt("Digite o novo nome:", produtoEditado.nome);
-                var novaDescricao = prompt("Digite a nova descrição:", produtoEditado.descricao);
-                var novoPreco = prompt("Digite o novo preço:", produtoEditado.preco);
-                var novaQuantidade = prompt("Digite a nova quantidade:", produtoEditado.quantidade);
+                var nomeOriginal = produtoEditado.nome;
+                var descricaoOriginal = produtoEditado.descricao;
+                var precoOriginal = produtoEditado.preco;
+                var quantidadeOriginal = produtoEditado.quantidade;
 
-                produtoEditado.nome = novoNome;
-                produtoEditado.descricao = novaDescricao;
-                produtoEditado.preco = novoPreco;
-                produtoEditado.quantidade = novaQuantidade;
+                var novoNome = prompt("Digite o novo nome ou cancele para manter o anterior", produtoEditado.nome);
+                var novaDescricao = prompt("Digite a nova descrição ou cancele para manter o anterior", produtoEditado.descricao);
+                var novoPreco = prompt("Digite o novo preço ou cancele para manter o anterior", produtoEditado.preco);
+                var novaQuantidade = prompt("Digite a nova quantidade ou cancele para manter o anterior", produtoEditado.quantidade);
+                
+                if (novoNome !== null) {
+                    produtoEditado.nome = novoNome;
+                }
+                
+                if (novaDescricao !== null) {
+                    produtoEditado.descricao = novaDescricao;
+                }
 
-                console.log(`Produto com ID ${id} editado.`);
+                if (novoPreco !== null) {
+                    produtoEditado.preco = novoPreco;
+                }
+
+                if (novaQuantidade !== null) {
+                    produtoEditado.quantidade = novaQuantidade;
+                }
+
+                if (
+                    novoNome === null &&
+                    novaDescricao === null &&
+                    novoPreco === null &&
+                    novaQuantidade === null
+                ) {
+                    produtoEditado.nome = nomeOriginal;
+                    produtoEditado.descricao = descricaoOriginal;
+                    produtoEditado.preco = precoOriginal;
+                    produtoEditado.quantidade = quantidadeOriginal;
+                    alert(`Edição cancelada para o produto com o id: ${id}`)
+                } else {
+                    alert(`Produto com ID ${id} editado.`);
+                }
+
                 mostrar();
+            
             } else {
-                console.log(`Produto com ID ${id} não encontrado.`);
+                alert(`Produto com ID ${id} não encontrado.`);
             }
+            
         }
     </script>
 </body>
