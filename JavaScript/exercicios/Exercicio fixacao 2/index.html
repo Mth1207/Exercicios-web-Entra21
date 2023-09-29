@@ -1,73 +1,164 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Cadastro de Produto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Document</title>
 </head>
 
 <body>
     <div class="container">
-        <h1>Cadastro de Produto</h1>
-        <form>
-            <div class="form-group">
-                <label for="produto">Nome do Produto:</label>
-                <input type="text" class="form-control col-5" id="produto" placeholder="Digite o nome do produto">
-            </div>
-            <div class="form-group">
-                <label for="descricao">Descrição:</label>
-                <textarea class="form-control col-5" id="descricao" rows="5"
-                    placeholder="Digite a descrição do produto"></textarea>
-            </div>
-            <div class="form-group" id="num">
-                <label class="m-1" for="preco">Preço:</label>
-                <input type="text" class="form-control col-1" id="preco" placeholder="R$">
-
-                <label class="m-1" for="quantidade">Quantidade:</label>
-                <input type="number" class="form-control col-2" id="quantidade" placeholder="Quantidade">
+        <div class="row">
+            <div class="col-md-5">
+                <h2>Cadastro de Produtos</h2>
+                <input class="form-control m-1" type="text" id="produto" placeholder="Digite o produto..">
+                <textarea class="form-control m-1" id="descricao" rows="3"
+                    placeholder="Descrição do Produto.."></textarea>
+                <div class="col-md-2">
+                    <input class="form-control m-1 col-md-2" type="text" id="preco" placeholder="R$">
+                    <input class="form-control m-1 " type="text" id="quantidade" placeholder="Qtn..">
+                </div>
+                <h2>Ações</h2>
+                <button class="btn btn-primary m-1" onclick="cadastrar()">Cadastrar</button>
+                <button class="btn btn-success m-1" onclick="mostrar()">Mostrar Lista</button>
             </div>
 
-            <div>
-                <button class="btn btn-primary" onclick="cadastrar()">Cadastrar</button>
-                <button class="btn btn-warning">Editar</button>
-                <button class="btn btn-danger">Remover</button>
-                <button class="btn btn-success">Mostrar Lista</button>
+            <div class="col-md-7 ml-2">
+                <h2>Lista de Produtos</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Produto</th>
+                            <th>Descrição</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaProdutos">
+                    </tbody>
+                </table>
             </div>
-        </form>
+        </div>
     </div>
 
     <script>
-
-        function cadastrar() {
-            var a = 10
-            var b = 2
-            var soma = a + b
-            console.log(soma)
-        }
-
-        /*
         var produtos = [];
+        var contador = 1;
+        var produtoEditando = null;
 
         function cadastrar() {
-            // Captura os valores dos campos quando o botão é clicado
             var produto = document.getElementById("produto").value;
             var descricao = document.getElementById("descricao").value;
             var preco = document.getElementById("preco").value;
             var quantidade = document.getElementById("quantidade").value;
 
-            const objProduto = {
-                nome: produto,
-                descricao: descricao,
-                preco: preco,
-                quantidade: quantidade
-            };
+            preco = preco.replace(",", ".");
 
-            produtos.push(objProduto);
+            if (produto !== "" && descricao !== "") {
+                const objProduto = {
+                    id: contador++,
+                    nome: produto,
+                    descricao: descricao,
+                    preco: parseFloat(preco),
+                    quantidade: parseInt(quantidade)
+                };
+                produtos.push(objProduto);
+                limpar();
+                mostrar();
+            } else {
+                alert("Digite o nome do produto e a descrição para cadastrar!");
+            }
+        }
 
-            console.log("Produto cadastrado:", objProduto);
-            console.log("Lista de produtos:", produtos);
-        }*/
+        function limpar() {
+            document.getElementById("produto").value = "";
+            document.getElementById("descricao").value = "";
+            document.getElementById("preco").value = "";
+            document.getElementById("quantidade").value = "";
+        }
+
+        function mostrar() {
+            var listaProdutos = document.getElementById("listaProdutos");
+            listaProdutos.innerHTML = "";
+            if (produtos.length > 0) {
+                for (let i = 0; i < produtos.length; i++) {
+                    var prod = produtos[i];
+                    var row = listaProdutos.insertRow();
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    var cell4 = row.insertCell(3);
+                    var cell5 = row.insertCell(4);
+                    var cell6 = row.insertCell(5);
+
+                    cell1.innerHTML = prod.id;
+                    cell2.innerHTML = prod.nome;
+                    cell3.innerHTML = prod.descricao;
+                    cell4.innerHTML = prod.preco.toFixed(2).replace(".", ",");
+                    cell5.innerHTML = prod.quantidade;
+                    cell6.innerHTML = `<button class="btn btn-danger" onclick="excluir(${prod.id})">Excluir</button> <button class="btn btn-info" onclick="editar(${prod.id})">Editar</button>`
+
+                }
+
+                var total = 0;
+                for (let i = 0; i < produtos.length; i++) {
+                    total += parseFloat(produtos[i].preco) * parseInt(produtos[i].quantidade);
+                }
+
+                var linhaTotal = listaProdutos.insertRow();
+                var cellTotal = linhaTotal.insertCell(0);
+                cellTotal.colSpan = 6;
+                cellTotal.innerHTML = `<strong>Total:</strong> R$ ${total.toFixed(2)}`;
+
+            } else {
+                alert("A lista está vazia!")
+            }
+        }
+
+        function excluir(id) {
+            const index = produtos.findIndex((prod) => prod.id === id)
+
+            if (index !== -1) {
+                produtos.splice(index, 1)
+                console.log(`Produto com ID ${id} excluído`)
+                mostrar()
+            }
+        }
+
+        function editar(id) {
+            const index = produtos.findIndex((prod) => prod.id === id)
+
+            if (index !== -1) {
+                produtoEditando = produtos[index];
+
+                var novoNome = prompt("Digite o novo nome ou cancele para manter o anterior", produtoEditando.nome);
+                if (novoNome !== null) {
+                    produtoEditando.nome = novoNome;
+                }
+
+                var novaDescricao = prompt("Digite a nova descrição ou cancele para manter o anterior", produtoEditando.descricao);
+                if (novaDescricao !== null) {
+                    produtoEditando.descricao = novaDescricao;
+                }
+
+                var novoPreco = prompt("Digite o novo preço ou cancele para manter o anterior", produtoEditando.preco);
+                if (novoPreco !== null) {
+                    novoPreco = novoPreco.replace(",", ".");
+                    produtoEditando.preco = parseFloat(novoPreco);
+                }
+
+                var novaQuantidade = prompt("Digite a nova quantidade ou cancele para manter o anterior", produtoEditando.quantidade);
+                if (novaQuantidade !== null) {
+                    produtoEditando.quantidade = parseInt(novaQuantidade);
+                }
+
+                mostrar();
+            }
+        }
     </script>
 </body>
 
